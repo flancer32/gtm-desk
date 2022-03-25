@@ -1,0 +1,14 @@
+{
+  "@teqfw/core": {
+    "plugin": {
+      "onInit": "Gtm_Desk_Back_Plugin_Init",
+      "onStop": "Gtm_Desk_Back_Plugin_Stop"
+    }
+  },
+  "@teqfw/di": {
+    "autoload": {
+      "ns": "Gtm_Desk",
+      "path": "./src"
+    }
+  }
+}
