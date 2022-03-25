@@ -2,7 +2,7 @@
  * Plugin finalization function.
  */
 // MODULE'S VARS
-const NS = 'Fl32_Dup_Back_Plugin_Stop';
+const NS = 'Gtm_Desk_Back_Plugin_Stop';
 
 export default function Factory(spec) {
     // DEPS
