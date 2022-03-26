@@ -7,10 +7,7 @@ const NS = 'Gtm_Desk_Back_Dto_Config_Local';
 
 // MODULE'S CLASSES
 export default class Gtm_Desk_Back_Dto_Config_Local {
-    /** @type {TeqFw_Db_Back_Dto_Config_Local} */
-    db;
-    /** @type {string} */
-    logsMonitor;
+ // TODO: use it or remove it
 }
 
 /**
@@ -32,8 +29,6 @@ export class Factory {
          */
         this.create = function (data) {
             const res = new Gtm_Desk_Back_Dto_Config_Local();
-            res.db = fDb.create(data?.db);
-            res.logsMonitor = castString(data?.logsMonitor);
             return res;
         }
     }
