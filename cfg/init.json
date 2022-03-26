@@ -8,15 +8,17 @@
         "password": "...",
         "user": "..."
       }
-    }
+    },
+    "logsMonitor": "logs.local.teqfw.com"
   },
   "@teqfw/core": {
     "devMode": false
   },
   "@teqfw/web": {
+    "frontLogsMonitoring": false,
     "server": {
       "port": 9999
     },
-    "urlBase": "gtm.domain.com"
+    "urlBase": "local|gtm.domain.com"
   }
 }
