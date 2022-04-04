@@ -20,8 +20,7 @@ export default function Factory(spec) {
 
     // DEFINE WORKING VARS & PROPS
     const template = `
-<div v-if="$q.screen.gt.sm"
-     class="q-ml-xs q-gutter-md text-body2 text-weight-bold row items-center no-wrap">
+<div class="q-ml-xs q-gutter-md text-body2 text-weight-bold row items-center no-wrap">
     <q-btn flat dense :label="$t('nav.tasks')" to="${DEF.ROUTE_TASKS}"/>
     <q-btn flat dense :label="$t('nav.reports')" to="${DEF.ROUTE_REPORTS}"/>
     <q-btn flat dense :label="$t('nav.graveyards')" to="${DEF.ROUTE_GRAVEYARDS}"/>

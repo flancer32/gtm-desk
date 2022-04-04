@@ -1,1 +1,6 @@
 @import "css/vars.css";
+
+
+.q-expansion-item__toggle-icon {
+    color: white;
+}
