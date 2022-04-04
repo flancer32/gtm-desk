@@ -12,7 +12,7 @@ const NS = 'Gtm_Desk_Front_Ui_Tasks';
  * @memberOf Gtm_Desk_Front_Ui_Tasks
  */
 class IUiComp {
-    loadTasks() {}
+ async loadTasks() {}
 }
 
 // MODULE'S FUNCTIONS
@@ -28,6 +28,8 @@ export default function (spec) {
     const uiTask = spec['Gtm_Desk_Front_Ui_Tasks_Card$'];
     /** @type {Gtm_Desk_Front_Mod_Task_Loader} */
     const modTaskLoader = spec['Gtm_Desk_Front_Mod_Task_Loader$'];
+    /** @type {Gtm_Desk_Front_Wg_Tasks} */
+    const wgTasks = spec['Gtm_Desk_Front_Wg_Tasks$'];
     /** @type {typeof Gtm_Base_Shared_Enum_Task_Status} */
     const STATUS = spec['Gtm_Base_Shared_Enum_Task_Status$'];
 
@@ -69,7 +71,9 @@ export default function (spec) {
                 icon="cached"
                 label="Pending tasks"
             >
-                Pending tasks
+                 <div class="row">
+                    <ui-task v-for="(one) in tasksPend" :item="one" class="q-ma-sm"/>
+                 </div>
             </q-expansion-item>
             
             <q-expansion-item v-model="expPendComp"
@@ -78,7 +82,9 @@ export default function (spec) {
                 icon="pending_actions"
                 label="Tasks pending completion"
             >
-                Tasks pending completion
+                 <div class="row">
+                    <ui-task v-for="(one) in tasksPendComp" :item="one" class="q-ma-sm"/>
+                 </div>
             </q-expansion-item>
             
             <q-expansion-item v-model="expComp"
@@ -87,7 +93,9 @@ export default function (spec) {
                 icon="check_circle_outline"
                 label="Completed tasks"
             >
-                Completed tasks
+                 <div class="row">
+                    <ui-task v-for="(one) in tasksComp" :item="one" class="q-ma-sm"/>
+                 </div>
             </q-expansion-item>
             
             <q-expansion-item v-model="expDis"
@@ -96,7 +104,9 @@ export default function (spec) {
                 icon="not_interested"
                 label="Disabled tasks"
             >
-                Disabled tasks
+                 <div class="row">
+                    <ui-task v-for="(one) in tasksDis" :item="one" class="q-ma-sm"/>
+                 </div>
             </q-expansion-item>
         </div>
     </div>
@@ -138,10 +148,15 @@ export default function (spec) {
                 this.tasksPendComp = [];
                 for (const task of tasks) {
                     if (task.status === STATUS.NEW) this.tasksNew.push(task);
+                    else if (task.status === STATUS.PENDING) this.tasksPend.push(task);
+                    else if (task.status === STATUS.PROGRESS) this.tasksPendComp.push(task);
+                    else if (task.status === STATUS.COMPLETED) this.tasksComp.push(task);
+                    else if (task.status === STATUS.DISABLED) this.tasksDis.push(task);
                 }
             }
         },
         async mounted() {
+            wgTasks.set(this);
             this.loadTasks();
         }
     };

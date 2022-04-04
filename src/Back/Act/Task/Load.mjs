@@ -50,6 +50,8 @@ export default function (spec) {
         const aGyBid = 'gyBid';
         const aGyTitle = 'gyTitle';
         const aGyUuid = 'gyUuid';
+        const aImgExt = 'imgExt';
+        const aImgUuid = 'imgUuid';
         // compose SQL
         const tblGy = {[asGy]: trx.getTableName(rdbGraveyard)};
         const tblT = {[asT]: trx.getTableName(rdbTask)};
@@ -77,7 +79,8 @@ export default function (spec) {
         // join upload table
         query.leftOuterJoin(tblU, `${asU}.${A_UPLOAD.ID}`, `${asT}.${A_TASK.IMAGE_REF}`);
         query.select([
-            {[A_DTO.IMAGE_UUID]: `${asU}.${A_UPLOAD.UUID}`},
+            {[aImgUuid]: `${asU}.${A_UPLOAD.UUID}`},
+            {[aImgExt]: `${asU}.${A_UPLOAD.EXT}`},
         ]);
         // const sql = query.toString();
         const rs = await query;
@@ -88,6 +91,8 @@ export default function (spec) {
             gy.uuid = one[aGyUuid];
             const task = dtoTask.createDto(one);
             task.graveyard = gy;
+            if (one[aImgUuid] && one[aImgExt])
+                task.imageName = `${one[aImgUuid]}.${one[aImgExt]}`;
             items.push(task);
         }
         return {items};
