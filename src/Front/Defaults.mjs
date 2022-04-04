@@ -13,6 +13,8 @@ export default class Gtm_Desk_Front_Defaults {
     /** @type {Gtm_Desk_Shared_Defaults} */
     SHARED;
 
+    TIMEOUT_EVENT_RESPONSE = 15000;
+
     constructor(spec) {
         this.SHARED = spec['Gtm_Desk_Shared_Defaults$'];
         Object.freeze(this);

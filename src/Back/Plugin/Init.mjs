@@ -17,7 +17,7 @@ export default function Factory(spec) {
 
     // FUNCS
     async function init() {
-        // TODO: use it or remove
+        await container.get('Gtm_Desk_Back_Hand_Task_List$');
     }
 
     // MAIN

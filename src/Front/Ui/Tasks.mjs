@@ -11,7 +11,9 @@ const NS = 'Gtm_Desk_Front_Ui_Tasks';
  * @interface
  * @memberOf Gtm_Desk_Front_Ui_Tasks
  */
-class IUiComp {}
+class IUiComp {
+    loadTasks() {}
+}
 
 // MODULE'S FUNCTIONS
 /**
@@ -47,7 +49,21 @@ export default function (spec) {
                 tasks: [],
             };
         },
-        methods: {},
-        async mounted() { }
+        methods: {
+            async loadTasks() {
+                const tasks = await modTaskLoader.load();
+                this.tasksComp = [];
+                this.tasksDis = [];
+                this.tasksNew = [];
+                this.tasksPend = [];
+                this.tasksPendComp = [];
+                for (const task of tasks) {
+                    if (task.status === STATUS.NEW) this.tasksNew.push(task);
+                }
+            }
+        },
+        async mounted() {
+            this.loadTasks();
+        }
     };
 }
